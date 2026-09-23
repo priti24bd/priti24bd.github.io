@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Priti Das Dipa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1B1F1C;
+    --paper: #F1EFE6;
+    --paper-dim: #E6E1D2;
+    --moss: #435C3A;
+    --ochre: #B87A2E;
+    --stone: #948C77;
+    --line: rgba(27,31,26,0.16);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --ink: #EDEAE0;
+      --paper: #17190F;
+      --paper-dim: #1F2216;
+      --moss: #8FAE7F;
+      --ochre: #D8A25C;
+      --stone: #8A8873;
+      --line: rgba(237,234,224,0.16);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #EDEAE0;
+    --paper: #17190F;
+    --paper-dim: #1F2216;
+    --moss: #8FAE7F;
+    --ochre: #D8A25C;
+    --stone: #8A8873;
+    --line: rgba(237,234,224,0.16);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
+  a { color: inherit; }
+
+  /* ---- Hero ---- */
+  header.hero {
+    padding: clamp(60px,10vh,110px) 0 70px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-size: 13px; letter-spacing: 0.02em; color: var(--stone);
+    margin-bottom: clamp(40px,8vh,90px);
+    flex-wrap: wrap; gap: 8px;
+  }
+  h1.name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(48px, 9vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    max-width: 11ch;
+  }
+  h1.name em { font-style: italic; font-weight: 400; color: var(--moss); }
+  .role-line {
+    margin-top: 22px;
+    max-width: 560px;
+    font-size: clamp(17px, 2.4vw, 21px);
+    color: var(--ink);
+    padding-left: 2px;
+  }
+  .role-line span { color: var(--moss); }
+
+  /* ---- section shell ---- */
+  section { padding: clamp(50px,8vh,88px) 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .section-head {
+    display: grid; grid-template-columns: 110px 1fr; gap: 28px;
+    margin-bottom: 44px;
+  }
+  .section-head .idx { font-size: 13px; color: var(--stone); padding-top: 6px; }
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 38px);
+    max-width: 14ch;
+  }
+  @media (max-width: 640px) {
+    .section-head { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ---- About ---- */
+  .about-body { display: grid; grid-template-columns: 110px 1fr; gap: 28px; }
+  .about-body p { max-width: 62ch; font-size: 18px; color: var(--ink); }
+  .about-body p + p { margin-top: 18px; }
+  @media (max-width: 640px) { .about-body { grid-template-columns: 1fr; } }
+
+  /* ---- Timeline (leadership) — numbered because it IS chronological ---- */
+  .timeline { list-style: none; }
+  .tl-item {
+    display: grid; grid-template-columns: 110px 60px 1fr; gap: 28px;
+    padding: 26px 0; border-top: 1px solid var(--line);
+  }
+  .tl-item:first-child { border-top: none; padding-top: 0; }
+  .tl-date { font-size: 13px; color: var(--stone); padding-top: 4px; }
+  .tl-num { font-family: 'Fraunces', serif; font-style: italic; color: var(--moss); font-size: 22px; }
+  .tl-role { font-weight: 600; font-size: 18px; margin-bottom: 2px; }
+  .tl-org { color: var(--moss); font-size: 15px; margin-bottom: 10px; }
+  .tl-desc { max-width: 58ch; color: var(--ink); font-size: 15.5px; }
+  @media (max-width: 640px) {
+    .tl-item { grid-template-columns: 40px 1fr; }
+    .tl-date { grid-column: 1 / -1; order: -1; padding-top: 0; margin-bottom: 6px; }
+  }
+
+  /* ---- Projects ---- */
+  .projects { display: flex; flex-direction: column; }
+  .proj {
+    display: grid; grid-template-columns: 110px 1fr; gap: 28px;
+    padding: 32px 0; border-top: 1px solid var(--line);
+  }
+  .proj:first-child { border-top: none; padding-top: 0; }
+  .proj-tag { font-size: 13px; color: var(--stone); padding-top: 4px; }
+  .proj-name {
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(22px,3vw,28px);
+    margin-bottom: 8px; max-width: 24ch;
+  }
+  .proj-desc { max-width: 60ch; font-size: 16px; }
+  .proj-desc a { text-decoration: underline; text-decoration-color: var(--stone); text-underline-offset: 3px; }
+  .proj-desc a:hover { text-decoration-color: var(--moss); }
+  @media (max-width: 640px) { .proj { grid-template-columns: 1fr; } }
+
+  /* ---- Recognition strip ---- */
+  .rec-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .rec-row {
+    display: grid; grid-template-columns: 110px 1fr auto; gap: 28px; align-items: baseline;
+    padding: 18px 0; border-top: 1px solid var(--line);
+  }
+  .rec-row:first-child { border-top: none; padding-top: 0; }
+  .rec-year { font-size: 13px; color: var(--stone); }
+  .rec-title { font-size: 16.5px; }
+  .rec-org { font-size: 14px; color: var(--moss); text-align: right; }
+  @media (max-width: 640px) {
+    .rec-row { grid-template-columns: 1fr; gap: 4px; }
+    .rec-org { text-align: left; }
+  }
+
+  /* ---- Skills ---- */
+  .skills-body { display: grid; grid-template-columns: 110px 1fr; gap: 28px; }
+  .skill-group { margin-bottom: 20px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-label { font-size: 13px; color: var(--stone); margin-bottom: 6px; }
+  .skill-vals { font-size: 17px; max-width: 60ch; }
+  @media (max-width: 640px) { .skills-body { grid-template-columns: 1fr; } }
+
+  /* ---- Footer ---- */
+  footer {
+    padding: clamp(50px,8vh,88px) 0 60px;
+    display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px;
+  }
+  footer .big {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(30px,5vw,46px); max-width: 12ch; line-height: 1.05;
+  }
+  footer .contacts { font-size: 14.5px; display: flex; flex-direction: column; gap: 6px; }
+  footer .contacts a { text-decoration: underline; text-decoration-color: var(--stone); text-underline-offset: 3px; }
+
+  ::selection { background: var(--moss); color: var(--paper); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top">
+      <span>Dhaka, Bangladesh</span>
+      <span>Social impact leadership &amp; applied ML</span>
+    </div>
+    <h1 class="name">Priti Das<br><em>Dipa</em></h1>
+    <p class="role-line">Founder of a 300-volunteer global nonprofit, trainer to youth across ten districts, and a <span>machine learning intern</span> who still finds time to fix the wiring on a fire detector.</p>
+  </header>
+
+  <section id="about">
+    <div class="about-body">
+      <div></div>
+      <div>
+        <p>I grew up between two disciplines that most people keep separate: community organizing and hands-on engineering. In school that meant building an automatic night light one term and running nutrition sessions for rural schools the next. That habit never left — I still move between spreadsheets of volunteer retention data and lines of Python.</p>
+        <p>Since 2025 I've led NOVA Nourish Foundation from an idea into a working organization across 15+ countries, trained youth volunteers for JAAGO Foundation, and represented Bangladesh's young people at the UN's CSW70. This year I added a machine learning internship to the mix — because the same instinct that made me chase field data on 100+ adolescent girls' nutrition now makes me chase clean training data too.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership">
+    <div class="section-head">
+      <span class="idx">Leadership</span>
+      <h2>Where I've put in the hours</h2>
+    </div>
+    <ul class="timeline">
+      <li class="tl-item">
+        <span class="tl-date">2025 — Present</span>
+        <span class="tl-num">i.</span>
+        <div>
+          <div class="tl-role">Founder &amp; Executive Director</div>
+          <div class="tl-org">NOVA Nourish Foundation — Global</div>
+          <div class="tl-desc">Grew a volunteer base past 300 people with over 80% retention across 15+ countries. Ran 30+ workshops and health conferences, reached 5,000+ youth through nutrition sessions in 20+ schools, and closed 15+ NGO partnerships worth $7,000+ in funding and resources.</div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <span class="tl-date">2025</span>
+        <span class="tl-num">ii.</span>
+        <div>
+          <div class="tl-role">Division Trainer</div>
+          <div class="tl-org">JAAGO Foundation — Khulna</div>
+          <div class="tl-desc">Designed and ran 30+ standardized training sessions for volunteers aged 16–28 across 10 districts.</div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <span class="tl-date">2025</span>
+        <span class="tl-num">iii.</span>
+        <div>
+          <div class="tl-role">Project Officer</div>
+          <div class="tl-org">Volunteer for Bangladesh — Bagerhat, Khulna</div>
+          <div class="tl-desc">Delivered 5+ social impact projects across 9 Upazilas. Elected to the role with 90% of the vote for field management.</div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <span class="tl-date">2024</span>
+        <span class="tl-num">iv.</span>
+        <div>
+          <div class="tl-role">Youth Mentor</div>
+          <div class="tl-org">National Children Task Force — Bagerhat</div>
+          <div class="tl-desc">Guided 1,000+ high school students on social responsibility and fair access to education.</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <span class="idx">Projects</span>
+      <h2>What I've built</h2>
+    </div>
+    <div class="projects">
+      <div class="proj">
+        <span class="proj-tag">2025</span>
+        <div>
+          <div class="proj-name">Smart Flood Management System</div>
+          <p class="proj-desc">Built with team Climate Peonals for the imaGen Ventures Youth Challenge, organized by the U.S. Embassy Dhaka, Generation Unlimited, JAAGO Foundation, and UNICEF Bangladesh. The system pairs drones with IoT water-level sensors to warn flood-prone communities in Bangladesh earlier. Ranked top 4 of 135 divisional teams for climate innovation after a 3-day residential bootcamp. <a href="https://github.com/priti24bd" target="_blank" rel="noopener">View on GitHub →</a></p>
+        </div>
+      </div>
+      <div class="proj">
+        <span class="proj-tag">2025</span>
+        <div>
+          <div class="proj-name">Hanging Nutrition Bag</div>
+          <p class="proj-desc">One of just 16 projects selected nationally by the Global Alliance for Improved Nutrition, with $500 in funding. Implemented with 25 families, 100+ adolescent girls, and three villages. <a href="https://github.com/priti24bd" target="_blank" rel="noopener">View on GitHub →</a></p>
+        </div>
+      </div>
+      <div class="proj">
+        <span class="proj-tag">2020 – 2025</span>
+        <div>
+          <div class="proj-name">Automation Projects</div>
+          <p class="proj-desc">Twelve small automation builds over five years, including an automatic night light and a fire detector that ran in a high school for three months.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recognition">
+    <div class="section-head">
+      <span class="idx">Recognition</span>
+      <h2>Rooms I've been in</h2>
+    </div>
+    <div class="rec-grid">
+      <div class="rec-row">
+        <span class="rec-year">2026</span>
+        <span class="rec-title">Invited Youth Participant, CSW70</span>
+        <span class="rec-org">UN Women</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-year">2026</span>
+        <span class="rec-title">Machine Learning Intern</span>
+        <span class="rec-org">FlyRank AI</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-year">2026</span>
+        <span class="rec-title">Leadership, Cohort 1 &amp; 3</span>
+        <span class="rec-org">Aspire Leadership Program</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-year">—</span>
+        <span class="rec-title">Introduction to Artificial Intelligence with Python</span>
+        <span class="rec-org">CS50AI, Harvard's CS50</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-year">—</span>
+        <span class="rec-title">Robotics, AI &amp; Python coursework</span>
+        <span class="rec-org">HarvardX, edX</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-year">2022 – 2024</span>
+        <span class="rec-title">HSC, Humanities — GPA 4.92/5.00, ranked top 2 of 1,200</span>
+        <span class="rec-org">Govt. Sheikh Mujibur Rahman College</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <span class="idx">Skills</span>
+      <h2>The toolkit</h2>
+    </div>
+    <div class="skills-body">
+      <div></div>
+      <div>
+        <div class="skill-group">
+          <div class="skill-label">Programming</div>
+          <div class="skill-vals">Python, C++, HTML</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Leadership</div>
+          <div class="skill-vals">Policy analysis, public speaking, team management, advocacy</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Tools</div>
+          <div class="skill-vals">Arduino, GitHub, Notion, Canva, Microsoft Office</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Languages</div>
+          <div class="skill-vals">Bengali (native), English (professional), Spanish (intermediate), Hindi (intermediate)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="big">Let's talk nutrition, code, or both.</div>
+    <div class="contacts">
+      <a href="mailto:dipapritidas@gmail.com">dipapritidas@gmail.com</a>
+      <a href="tel:+8801701396760">+880 1701396760</a>
+      <a href="https://linkedin.com/in/priti-das-dipa/" target="_blank" rel="noopener">linkedin.com/in/priti-das-dipa</a>
+      <a href="https://github.com/priti24bd" target="_blank" rel="noopener">github.com/priti24bd</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
